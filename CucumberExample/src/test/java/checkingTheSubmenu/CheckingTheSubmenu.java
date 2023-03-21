@@ -14,9 +14,9 @@ import java.util.concurrent.TimeUnit;
 public class CheckingTheSubmenu {
     private ChromeDriver driver;
     private static final String CATALOG_NAME_PATTERN = "//span[@class='b-main-navigation__text' and text()='%s']";
-    private static final String COUNT_NAME_PATTERN = "//span[@class='b-main-navigation__dropdown-advert-sign' and text()='%s']";
+    private static final String NAME_PATTERN = "//span[@class='b-main-navigation__dropdown-advert-sign' and text()='%s']";
     private static final String CITY_NAME_PATTERN = "(//span[@class='b-main-navigation__dropdown-advert-sign' and text()='%s'])[2]";
-    private static final String MINSK_CITY_NAME_PATTERN = "(//span[@class='b-main-navigation__dropdown-advert-sign' and text()='%s'])[4]";
+    private static final String MINSK_CITY_NAME_PATTERN = "(//span[@class='b-main-navigation__dropdown-advert-sign' and text()='%s'])[3]";
 
     @Дано("запуск страницы {string}")
     public void запуск_страницы(String string) {
@@ -30,7 +30,7 @@ public class CheckingTheSubmenu {
         WebElement getmenu = driver.findElement(By.xpath(String.format(CATALOG_NAME_PATTERN, string)));
         Actions actions = new Actions(driver);
         actions.moveToElement(getmenu).perform();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
     @Тогда("отображающее категории по городам 2 - {string}, {string}, {string}")
@@ -50,9 +50,9 @@ public class CheckingTheSubmenu {
     @Тогда("отображающее категории  деление по городам - {string}, {string}, {string}")
     @Тогда("отображающее категории  деление по маркам - {string}, {string}, {string}")
     public void отображающее_категории_количеству_комнат(String string1, String string2, String string3) {
-        boolean actual1 = driver.findElement(By.xpath(String.format(COUNT_NAME_PATTERN, string1))).isDisplayed();
-        boolean actual2 = driver.findElement(By.xpath(String.format(COUNT_NAME_PATTERN, string2))).isDisplayed();
-        boolean actual3 = driver.findElement(By.xpath(String.format(COUNT_NAME_PATTERN, string3))).isDisplayed();
+        boolean actual1 = driver.findElement(By.xpath(String.format(NAME_PATTERN, string1))).isDisplayed();
+        boolean actual2 = driver.findElement(By.xpath(String.format(NAME_PATTERN, string2))).isDisplayed();
+        boolean actual3 = driver.findElement(By.xpath(String.format(NAME_PATTERN, string3))).isDisplayed();
 
         Assert.assertTrue(actual1);
         Assert.assertTrue(actual2);
