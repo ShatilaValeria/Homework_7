@@ -12,7 +12,9 @@ import org.openqa.selenium.interactions.Actions;
 import java.util.concurrent.TimeUnit;
 
 public class CheckingTheSubmenu {
+
     private ChromeDriver driver;
+
     private static final String CATALOG_NAME_PATTERN = "//span[@class='b-main-navigation__text' and text()='%s']";
     private static final String NAME_PATTERN = "//span[@class='b-main-navigation__dropdown-advert-sign' and text()='%s']";
     private static final String CITY_NAME_PATTERN = "(//span[@class='b-main-navigation__dropdown-advert-sign' and text()='%s'])[2]";
